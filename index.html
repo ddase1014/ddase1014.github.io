@@ -1,11 +1,72 @@
-﻿---
-layout: default
-title: 我的Blog
----
-<h2>{{ page.title }}</h2>
-<p>最新文章</p>
-<ul>
-{% for post in site.posts %}
-<li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-{% endfor %}
-　　</ul>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>无标题页</title>
+ 
+    <script type="text/javascript"><!--
+        //页面级XMLHttp对象
+        var xmlhttp;
+ 
+        // 向服务器发送信息函数
+        function getPage(pageURL) {
+            xmlhttp = createXMLHttp();
+            if (xmlhttp) {
+                xmlhttp.onreadystatechange = setPageData;
+                xmlhttp.open('GET', pageURL);
+                xmlhttp.send(null);
+            } else {
+                alert("XMLHttpRequest对象为空");
+            }
+        }
+        //回调函数，获得从服务器回发的文档信息并显示在 disp层中
+        function setPageData() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var word = bytes2BSTR(xmlhttp.responseBody);
+ 
+                document.getElementById("disp").innerHTML = word;
+            }
+        }
+        //创建 XMLHttp对象，用于读取远程文档
+        function createXMLHttp() {
+            try {
+                return new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {
+                try {
+                    return new XMLHttpRequest();
+                } catch (e) {
+                    return null;
+                }
+            }
+            return null;
+        }
+// --></script>
+ 
+    <script language="vbscript" type="text/vbscript"> 
+'VBScritp脚本语言，此函数用于转换读取文档中的乱码
+  Function   bytes2BSTR(vIn) 
+  strReturn   =   "" 
+  For   i   =   1   To   LenB(vIn) 
+  ThisCharCode   =   AscB(MidB(vIn,i,1)) 
+  If   ThisCharCode   <   &H80   Then 
+  strReturn   =   strReturn   &   Chr(ThisCharCode) 
+  Else 
+  NextCharCode   =   AscB(MidB(vIn,i+1,1)) 
+  strReturn   =   strReturn   &   Chr(CLng(ThisCharCode)   *   &H100   +   CInt(NextCharCode)) 
+  i   =   i   +   1 
+  End   If 
+  Next 
+  bytes2BSTR   =   strReturn
+  End   Function 
+    </script>
+ 
+</head>
+<body>
+ 
+    <script type="text/javascript">
+        window.onload = function() { getPage('https://www.baidu.com'); }
+    </script>
+ 
+    <div id="disp">
+    </div>
+</body>
+</html>
