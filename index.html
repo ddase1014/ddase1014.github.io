@@ -1,72 +1,41 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>无标题页</title>
+﻿<!DOCTYPE HTML>
+<html>
+
+<meta charset="utf-8"/>
+
+<section id="player">
+    <video id="media" width="100%" height="100%" controls>
+        <source id="v1" src="http://media.w3.org/2010/05/sintel/trailer.mp4">
+    </video>
+</section>
  
-    <script type="text/javascript"><!--
-        //页面级XMLHttp对象
-        var xmlhttp;
- 
-        // 向服务器发送信息函数
-        function getPage(pageURL) {
-            xmlhttp = createXMLHttp();
-            if (xmlhttp) {
-                xmlhttp.onreadystatechange = setPageData;
-                xmlhttp.open('GET', pageURL);
-                xmlhttp.send(null);
-            } else {
-                alert("XMLHttpRequest对象为空");
-            }
-        }
-        //回调函数，获得从服务器回发的文档信息并显示在 disp层中
-        function setPageData() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                var word = bytes2BSTR(xmlhttp.responseBody);
- 
-                document.getElementById("disp").innerHTML = word;
-            }
-        }
-        //创建 XMLHttp对象，用于读取远程文档
-        function createXMLHttp() {
-            try {
-                return new ActiveXObject("Microsoft.XMLHTTP");
-            } catch (e) {
-                try {
-                    return new XMLHttpRequest();
-                } catch (e) {
-                    return null;
-                }
-            }
-            return null;
-        }
-// --></script>
- 
-    <script language="vbscript" type="text/vbscript"> 
-'VBScritp脚本语言，此函数用于转换读取文档中的乱码
-  Function   bytes2BSTR(vIn) 
-  strReturn   =   "" 
-  For   i   =   1   To   LenB(vIn) 
-  ThisCharCode   =   AscB(MidB(vIn,i,1)) 
-  If   ThisCharCode   <   &H80   Then 
-  strReturn   =   strReturn   &   Chr(ThisCharCode) 
-  Else 
-  NextCharCode   =   AscB(MidB(vIn,i+1,1)) 
-  strReturn   =   strReturn   &   Chr(CLng(ThisCharCode)   *   &H100   +   CInt(NextCharCode)) 
-  i   =   i   +   1 
-  End   If 
-  Next 
-  bytes2BSTR   =   strReturn
-  End   Function 
-    </script>
- 
-</head>
-<body>
- 
-    <script type="text/javascript">
-        window.onload = function() { getPage('https://www.baidu.com'); }
-    </script>
- 
-    <div id="disp">
-    </div>
+
+<script>
+
+/**  
+ * 获取指定的URL参数值  
+ * URL:http://www.quwan.com/index?name=tyler  
+ * 参数：paramName URL参数  
+ * 调用方法:getParam("name")  
+ * 返回值:tyler  
+ */  
+function getParam(paramName) {  
+    paramValue = "", isFound = !1;  
+    if (this.location.search.indexOf("?") == 0 && this.location.search.indexOf("=") > 1) {  
+        arrSource = unescape(this.location.search).substring(1, this.location.search.length).split("&"), i = 0;  
+        while (i < arrSource.length && !isFound) arrSource[i].indexOf("=") > 0 && arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase() && (paramValue = arrSource[i].split("=")[1], isFound = !0), i++  
+    }  
+    return paramValue == "" && (paramValue = null), paramValue  
+}  
+
+
+ document.getElementById("v1").src=getParam("mp4");
+        document.getElementById("media").load();
+		    document.getElementById("media").play();
+
+
+</script> 
 </body>
+ 
+
 </html>
