@@ -28,7 +28,7 @@ function getParam(paramName) {
     return paramValue == "" && (paramValue = null), paramValue  
 }  
 
-if (getParam("mp4")!="")
+if (getParam("mp4")!= null)
   {
    document.getElementById("v1").src=getParam("mp4");
         document.getElementById("media").load();
