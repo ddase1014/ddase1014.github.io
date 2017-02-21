@@ -28,10 +28,11 @@ function getParam(paramName) {
     return paramValue == "" && (paramValue = null), paramValue  
 }  
 
-if (getParam("mp4")!= null)
+if (getParam("spdz")!= null)
   {
-   document.getElementById("v1").src=getParam("mp5");
+   document.getElementById("v1").src=getParam("spdz");
         document.getElementById("media").load();
+		
   }
 
 document.getElementById("media").play();
