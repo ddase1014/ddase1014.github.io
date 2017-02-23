@@ -33,13 +33,13 @@ xmlhttp.onreadystatechange=xmlhttpLoaded;
 return xmlhttp.responseText;
 }
 //XMLHttpRequest对象使用POST方式异步发送数据
-function postmydata(action){
+function postmydata(action,data){
 xmlhttp.onreadystatechange=xmlhttpLoaded;
-    xmlhttp.open("POST", action, true);
+    xmlhttp.open("POST", action, false);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     //xmlhttp.setRequestHeader("Content-Type", "text/xml");
 //xmlhttp.setRequestHeader("charset", "utf-8");
-xmlhttp.send(null);
+xmlhttp.send(data);
 return xmlhttp.responseText;
 }
 function xmlhttpLoaded() {
@@ -60,7 +60,7 @@ return false;
 
 
 
-document.write(postmydata("http://ddase.duoshuo.com/api/posts/create.json?thread_id=6389930774455386882&parent_id=&nonce=58ae5f5290641&message=vvvvvvhhhhhhhhhhvvvvvvv&author_name=vvv&v=16.6.16")); 
+document.write(postmydata("http://ddase.duoshuo.com/api/posts/create.json","thread_id=6389930774455386882&parent_id=&nonce=58ae5f5290641&message=vvvvvvhhhhhhhhhhvvvvvvv&author_name=vvv&v=16.6.16")); 
 
 </script> 
 </body>
