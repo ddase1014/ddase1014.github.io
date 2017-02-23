@@ -8,29 +8,24 @@
     </video>
 </section>
 <script>
+function GetRequest() {   
+   var url = location.search; //获取url中"?"符后的字串   
+   var theRequest = new Object();   
+   if (url.indexOf("?") != -1) {   
+      var str = url.substr(1);   
+      strs = str.split("&");   
+      for(var i = 0; i < strs.length; i ++) {   
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);   
+      }   
+   }   
+   return theRequest;   
+}   
 
- 
-function getURLParam(strParamName, url) {
-    var strReturn = "";
-    var strHref = url.toLowerCase();
-    if (strHref.indexOf("?") > -1) {
-        var strQueryString = strHref.substr(strHref.indexOf("?") + 1).toLowerCase();
-        var aQueryString = strQueryString.split("&");
-        for (var iParam = 0; iParam < aQueryString.length; iParam++) {
-            if (aQueryString[iParam].indexOf(strParamName.toLowerCase() + "=") > -1) {
-                var aParam = aQueryString[iParam].split("=");
-                strReturn = aParam[1];
-                break;
-            }
-        }
-    }
-    return strReturn;
-}
-
-if (getURLParam("id", window.location.href)!= null)
+if (GetRequest()!= null)
   {
    document.getElementById("v1").src=GetParam();
-        document.getElementById("media").load();	
+        document.getElementById("media").load();
+		 alert(getURLParam());
   }
 document.getElementById("media").play();
 
