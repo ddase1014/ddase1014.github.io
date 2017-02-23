@@ -1,73 +1,38 @@
-﻿<!doctype html>
-<html>
-
- <!DOCTYPE HTML>
-
-<body>
-<script>  
-var xmlhttp=poster();
-
-function poster(){
-    var request = false;
-    if(window.XMLHttpRequest) {
-      request = new XMLHttpRequest();
-      if(request.overrideMimeType) {
-        request.overrideMimeType('text/xml');
-      }
-    } else if(window.ActiveXObject) {
-      var versions = ['Microsoft.XMLHTTP', 'MSXML.XMLHTTP', 'Microsoft.XMLHTTP', 'Msxml2.XMLHTTP.7.0', 'Msxml2.XMLHTTP.6.0', 'Msxml2.XMLHTTP.5.0', 'Msxml2.XMLHTTP.4.0', 'MSXML2.XMLHTTP.3.0', 'MSXML2.XMLHTTP'];
-      for(var i=0; i<versions.length; i++) {
-        try {
-          request = new ActiveXObject(versions[i]);
-        } catch(e) {}
-      }
-    }
-    return request;
-}
-
-//XMLHttpRequest对象使用GET方式异步发送数据
-function getmydata(action){
-xmlhttp.onreadystatechange=xmlhttpLoaded;
-    xmlhttp.open("GET", action, false);
-    xmlhttp.send();
-return xmlhttp.responseText;
-}
-//XMLHttpRequest对象使用POST方式异步发送数据
-function postmydata(action,data){
-xmlhttp.onreadystatechange=xmlhttpLoaded;
-    xmlhttp.open("POST", action, false);
-    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    //xmlhttp.setRequestHeader("Content-Type", "text/xml");
-//xmlhttp.setRequestHeader("charset", "utf-8");
-xmlhttp.send(data);
-return xmlhttp.responseText;
-}
-function xmlhttpLoaded() {
-
-if(xmlhttp.readyState == 4) {
-if(xmlhttp.status == 200) {
-//url存在 
-return true;
-}
- if(xmlhttp.status==404) {
-//url不存在   
-}
- 
-}
-
-return false;
-}
-
-
-
-
-str=getmydata("http://ddase.duoshuo.com/api/threads/listPosts.json?thread_key=1&url=http%3A%2F%2Fddase1014.cf%2F%3F%3D1&title=请替换成文章的标题&require=site%2Cvisitor%2Cnonce%2Clang%2Cunread%2Clog%2CextraCss&site_ims=1487771695&v=16.6.16"); //这是一字符串 
-var strs= new Array(); //定义一数组 
-strs=str.split("q1q1q"); //字符分割 
-
-document.write(strs[1]+"<br/>"); //分割后的字符输出 
-
- getmydata("http://ddase.duoshuo.com/posts/create.json?short_name=ddase.duoshuo.com&author_email=ddase1014@qq.com&author_name=ddase&thread_id=1&author_url=http://ddase1014.cf&message=111111111111111111111111111111")
-</script> 
-</body>
-</html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml">  
+<head>  
+  <title>孟宪会之AJAX跨域请求测试</title>  
+</head>  
+<body>  
+  <input type='button' value='开始测试' onclick='crossDomainRequest()' />  
+  <div id="content"></div>  
+  <script type="text/JavaScript">
+    var xhr = new XMLHttpRequest();  
+    var url = 'http://ddase.duoshuo.com/api/posts/create.jsonp?short_name=ddase.duoshuo.com&secret=34db0b72b1fdae9aa9fa120d3b24c92c&thread_key=1&thread_id=6389930774455386882&author_email=jp.chenyang@gmail.com&author_name=11111111111&message=222222222';  
+    function crossDomainRequest() {  
+      document.getElementById("content").innerHTML = "开始……";  
+      if (xhr) {  
+        xhr.open('GET', url, true);  
+        xhr.onreadystatechange = handler;  
+        xhr.send();  
+      } else {  
+        document.getElementById("content").innerHTML = "不能创建 XMLHttpRequest";  
+      }  
+    }  
+    function handler(evtXHR) {  
+      if (xhr.readyState == 4) {  
+        if (xhr.status == 200) {  
+          var response = xhr.responseText;  
+          document.getElementById("content").innerHTML = "结果：" + response;  
+        } else {  
+          document.getElementById("content").innerHTML = "不允许跨域请求。";  
+        }  
+      }  
+      else {  
+        document.getElementById("content").innerHTML += "<br/>执行状态 readyState：" + xhr.readyState;  
+      }  
+    }  
+</script>  
+</body>  
+</html>  
