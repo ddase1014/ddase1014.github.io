@@ -8,25 +8,22 @@
     </video>
 </section>
 <script>
-function GetRequest() {   
-   var url = location.search; //获取url中"?"符后的字串   
-   var theRequest = new Object();   
-   if (url.indexOf("?") != -1) {   
-      var str = url.substr(1);   
-      strs = str.split("&");   
-      for(var i = 0; i < strs.length; i ++) {   
-         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);   
-      }   
-   }   
-   return theRequest;   
-}   
 
-if (GetRequest()!= null)
+function id() {  
+var a=location.search; 
+var s=a.indexOf("?"); 
+var t=a.substring(s+2)
+return t;  
+
+}  
+ alert(id());
+ 
+if (id()!= null)
   {
-   document.getElementById("v1").src=GetRequest();
+   document.getElementById("v1").src=id();
         document.getElementById("media").load();
-		 alert(GetRequest());
   }
+  
 document.getElementById("media").play();
 </script> 
 </body>
