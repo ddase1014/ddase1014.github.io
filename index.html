@@ -1,33 +1,106 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml">  
-<meta charset="utf-8"/>
-<section id="player">
-    <video id="media" width="100%" height="100%" controls>
-        <source id="v1" src="http://media.w3.org/2010/05/sintel/trailer.mp4">
-    </video>
-</section>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>vip video online</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="keywords" content="腾讯视频会员,腾讯vip视频,爱奇艺会员vip,优酷会员,芒果TVvip解析">
+    <meta name="descriptipn" content="vip会员视频解析">
+   <!--  <link rel="stylesheet" href="images/myreset.css"> -->
+    <link rel="stylesheet" href="images/css.css">
+    <script type="text/javascript">
+    function dihejk() {
+        var diz = document.getElementById("dz").value;
+        var jkdz = document.getElementById("jieko");
+        var jk = document.getElementById("jieko").selectedIndex;
+        var jkv = jkdz.options[jk].value;
+        var cljdz = document.getElementById("bfq");
+        cljdz.src = jkv + diz;
+    }
+
+    function dihejk2() {
+        var diz = document.getElementById("dz").value;
+        var jkdz = document.getElementById("jieko");
+        var jk = document.getElementById("jieko").selectedIndex;
+        var jkv = jkdz.options[jk].value;
+        //var cljdz=document.getElementById("bfq");
+          window.open("http://ddase1014.cf/kkycs.html?="+ diz);
+    }
+
+    // window.onload = function() {
+    //     var canvas = document.getElementById("tianxian");
+    //     var context = canvas.getContext("2d");
+    //     //弧线
+    //     context.beginPath();
+
+    //     context.moveTo(55, 20);
+    //     context.lineTo(155, 150);
+    //     context.lineTo(255, 20);
+    //     context.lineJoin = "bevel";
+    //     context.lineCap = "butt";
+    //     context.lineWidth = "5";
+    //     context.strokeStyle = "#fff"
+    //     context.stroke();
+
+    // }
+    </script>
+    <script type="text/javascript">
+        window.onload=function(){
+          document.getElementById('cover').style.opacity="1";
+        }
+    </script>
+</head>
+
+<body>
+<div id="cover" style="opacity:0.1">
+    <div class="bml-header" >
+      <!--  <img src="http://activity.hdslb.com/zzjs/20160421bml/img-pc/22_bmlindex_comp.png" alt="" class="pic-people pic-people22">*/
+    <img src="http://activity.hdslb.com/zzjs/20160421bml/img-pc/33_bmlindex_comp.png" alt="" class="pic-people pic-people33">-->
+	
+	
+    </div>
+    <div id="container">
+     <canvas id="tianxian">请更新您的浏览器至最新版，如chrome，火狐，ie11,qq浏览器等</canvas> -->
+        <div class="headtitle">
+            <h1>Video Online</h1>
+        </div>
+        
+        <div id="wbk">
+            <div id="kj">
+                <iframe src="tips.html" id="bfq" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+            </div>
+            <div id="an">
+                
+
+                <select id="jieko" name="接口">
+                    <option value="http://ddase1014.cf/api.html?=">通用接口0</option>
+                      <option value="http://www.85105052.com/index/qqvod.php?url=">腾讯</option>
+                    
+                </select>
+
+                <input type="search" placeholder="输入视频地址：例如(http://www.iqiyi.com/v_19rr9k5h1s.html)" size="50" id="dz">
+                
+                <button id="bf" class="zy_btn" type="button" onclick="dihejk()">立即播放</button>
+                <button id="bybf" class="zy_btn" type="button" onclick="dihejk2()">视频下载</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?fb1ff8133294d9af30d1f6d376ad5504";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
-function id() {  
-var a=location.search; 
-var s=a.indexOf("?"); 
 
-if (s==-1){
-return null;
-}
-
-var t=a.substring(s+2)
-return t;  
-}  
-
-if (id()!= null)
-  {
-   document.getElementById("v1").src=id();
-        document.getElementById("media").load();
-  }
-  
-document.getElementById("media").play();
-</script> 
 </body>
+
 </html>
